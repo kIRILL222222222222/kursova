@@ -19,6 +19,21 @@
 <style> :root { --bg-color: white; --text-color: black; } body.dark-theme { --bg-color: black; --text-color: white; } body { background-color: var(--bg-color); color: var(--text-color); } </style>
 
 <script> const themeSwitcher = document.getElementById('theme-switcher'); themeSwitcher.addEventListener('change', function() { document.body.classList.toggle('dark-theme', this.value === 'dark'); }); </script>
+<nav>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+    <ul>
+        <li><a href="https://www.figma.com/design/aZF8NsbH1P7ddeNDilJzos/Untitled?node-id=0-1&t=AhJPRjwUvO68EK8Y-1">Фигма</a></li>
+        <li><a href="https://kochevov.wordpress.com/kursovaaa/">Ворд Пресс</a></li>
+        <li><a href="https://onlinetestpad.com/4dvglwjhrtxwi">Тест</a></li>
+        <li><a href="https://b24-owf0e7.bitrix24site.ru/">Бетрикс24</a></li>
+        <li><a href="https://youtu.be/X0jC2UWjoFs">Видео на ютуб</a></li>
+        <li><a href="/media/cc0-audio/t-rex-roar.mp3">Аудио</a></li>
+    </ul>
+</nav>
+
+<style> nav ul { list-style-type: none; padding: 0; display: none; } nav input[type="checkbox"] { display: none; } nav label.hamburger { display: inline-block; cursor: pointer; } nav label.hamburger span { display: block; width: 25px; height: 3px; background-color: #000; margin: 5px 0; transition: all 0.3s ease; } nav input[type="checkbox"]:checked ~ ul { display: block; } nav input[type="checkbox"]:checked + label.hamburger span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); } nav input[type="checkbox"]:checked + label.hamburger span:nth-child(2) { opacity: 0; } nav input[type="checkbox"]:checked + label.hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); } </style>
+
           <font color="grey"><h1 align="center"><b>Выберите свою страну</b></h1></font>
 <div class="left"> 
 <CAPTION>Выберите страну:</CAPTION>
