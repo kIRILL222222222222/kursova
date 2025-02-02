@@ -5,19 +5,32 @@
 <link rel="icon" href="my.jpg">
 </head>
 <font color="grey"><h1 align="center"><b>Курсовая работа</b></h1></font>
-          <font color="black"><h2 align="center"><b>Кочевова Кирилла Денисовича</b></h2></font>
+          <font color="grey"><h2 align="center"><b>Кочевова Кирилла Денисовича</b></h2></font>
 <body style="i (1).jpg">
 <select id="theme-switcher">
     <option value="light">Светлая тема</option>
     <option value="dark">Темная тема</option>
 </select>
+пп
+          <div class="accordion">
+    <button class="accordion-button">Вопрос 1</button>
+    <div class="accordion-panel">
+        Ответ 1
+    </div>
+    <button class="accordion-button">Вопрос 2</button>
+    <div class="accordion-panel">
+        Ответ 2
+    </div>
+</div>
+
+<style> .accordion-button { background-color: #eee; color: #444; cursor: pointer; padding: 18px; width: 100%; border: none; text-align: left; outline: none; font-size: 15px; transition: 0.4s; } .accordion-button:hover { background-color: #ccc; } .accordion-button.active, .accordion-button:hover { background-color: #ddd; } .accordion-panel { padding: 0 18px; background-color: white; max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; } </style>
+
+<script> const accordionButtons = document.querySelectorAll('.accordion-button'); accordionButtons.forEach(button => { button.addEventListener('click', () => { const panel = button.nextElementSibling; if (panel.style.maxHeight) { panel.style.maxHeight = null; } else { panel.style.maxHeight = panel.scrollHeight + 'px'; } button.classList.toggle('active'); }); }); </script>
 
 <style> :root { --bg-color: white; --text-color: black; } body.dark-theme { --bg-color: black; --text-color: white; } body { background-color: var(--bg-color); color: var(--text-color); } </style>
 
 <script> const themeSwitcher = document.getElementById('theme-switcher'); themeSwitcher.addEventListener('change', function() { document.body.classList.toggle('dark-theme', this.value === 'dark'); }); </script>
-
-         <hr>
-          <font color="black"><h1 align="center"><b>Все страны</b></h1></font>
+          <font color="grey"><h1 align="center"><b>Выберите свою страну</b></h1></font>
 <div class="left"> 
 <CAPTION>Выберите страну:</CAPTION>
 <TR><TD VALIGN=’top’>
