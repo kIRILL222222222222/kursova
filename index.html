@@ -1,246 +1,474 @@
-<DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="ru">
+
 <head>
-<link rel="stylesheet" href="my.css" >
-<link rel="icon" href="my.jpg">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Сайт с вкладками и необычным дизайном</title>
+	<style>
+		/* Общие стили */
+		body {
+			font-family: 'Arial', sans-serif;
+			margin: 0;
+			padding: 0;
+			background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+			background-size: 400% 400%;
+			animation: gradientBG 15s ease infinite;
+			color: #333;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		@keyframes gradientBG {
+			0% {
+				background-position: 0% 50%;
+			}
+
+			50% {
+				background-position: 100% 50%;
+			}
+
+			100% {
+				background-position: 0% 50%;
+			}
+		}
+
+		/* Контейнер для вкладок */
+		.tab-container {
+			width: 90%;
+			max-width: 800px;
+			background: rgba(255, 255, 255, 0.8);
+			border-radius: 20px;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+			overflow: hidden;
+			backdrop-filter: blur(10px);
+		}
+
+		/* Кнопки вкладок */
+		.tab-buttons {
+			display: flex;
+			background: rgba(255, 255, 255, 0.9);
+			border-bottom: 2px solid #ff6f61;
+		}
+
+		.tab-button {
+			flex: 1;
+			padding: 15px;
+			text-align: center;
+			color: #333;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.tab-button::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, rgba(255, 111, 97, 0.3), rgba(255, 111, 97, 0.1));
+			transition: all 0.3s ease;
+			z-index: 0;
+		}
+
+		.tab-button:hover::before {
+			left: 0;
+		}
+
+		.tab-button.active {
+			background: #ff6f61;
+			color: #fff;
+			font-weight: bold;
+		}
+
+		/* Контент вкладок */
+		.tab-content {
+			padding: 20px;
+			display: none;
+			animation: fadeIn 0.5s ease;
+		}
+
+		.tab-content.active {
+			display: block;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(10px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		h2 {
+			margin-top: 0;
+			font-size: 24px;
+			color: #ff6f61;
+		}
+
+		p {
+			line-height: 1.6;
+			font-size: 16px;
+		}
+
+		a {
+			color: #ff6f61;
+			text-decoration: none;
+			font-weight: bold;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+	</style>
 </head>
-<font color="grey"><h1 align="center"><b>Курсовая работа</b></h1></font>
-          <font color="grey"><h2 align="center"><b>Кочевова Кирилла Денисовича</b></h2></font>
+
 <body>
-<select id="theme-switcher">
-    <option value="light">Светлая тема</option>
-    <option value="dark">Темная тема</option>
-</select>
-<hr>
-<h1><b><div id="clock" align="center"></div>
 
-<script> const clock = document.getElementById('clock'); const updateClock = () => { const date = new Date(); const hours = date.getHours(); const minutes = date.getMinutes(); const seconds = date.getSeconds(); clock.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`; }; setInterval(updateClock, 1000); </script>
-</h1></b>
-<style> :root { --bg-color: white; --text-color: black; } body.dark-theme { --bg-color: black; --text-color: white; } body { background-color: var(--bg-color); color: var(--text-color); } </style>
+	<div class="tab-container">
+		<!-- Кнопки вкладок -->
+		<div class="tab-buttons">
+			<div class="tab-button active" data-tab="tab1">Курсовая</div>
+			<div class="tab-button" data-tab="tab2">О мне</div>
+			<div class="tab-button" data-tab="tab3">Контакты</div>
+		</div>
 
-<script> const themeSwitcher = document.getElementById('theme-switcher'); themeSwitcher.addEventListener('change', function() { document.body.classList.toggle('dark-theme', this.value === 'dark'); }); </script>
-<nav>
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
-    <ul>
-        <li><a href="https://www.figma.com/design/aZF8NsbH1P7ddeNDilJzos/Untitled?node-id=0-1&t=AhJPRjwUvO68EK8Y-1">Фигма</a></li>
-        <li><a href="https://kochevov.wordpress.com/kursovaaa/">Ворд Пресс</a></li>
-        <li><a href="https://onlinetestpad.com/4dvglwjhrtxwi">Тест</a></li>
-        <li><a href="https://b24-owf0e7.bitrix24site.ru/">Бетрикс24</a></li>
-    </ul>
-</nav>
+		<!-- Контент вкладок -->
+		<div class="tab-content active" id="tab1">
+			<h2>Курсовая Работа К.Д.Кочевов</h2>
+			<p><hr>
+			<h1><b><div id="clock" align="center"></div>
+			
+			<script> const clock = document.getElementById('clock'); const updateClock = () => { const date = new Date(); const hours = date.getHours(); const minutes = date.getMinutes(); const seconds = date.getSeconds(); clock.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`; }; setInterval(updateClock, 1000); </script>
+			</h1></b>
+				<style>
+					:root {
+						--bg-color: white;
+						--text-color: black;
+					}
+			
+					body.dark-theme {
+						--bg-color: black;
+						--text-color: white;
+					}
+			
+					body {
+						background-color: var(--bg-color);
+						color: var(--text-color);
+					}
+				</style>
+			
+				<script>
+					const themeSwitcher = document.getElementById('theme-switcher'); themeSwitcher.addEventListener('change', function() { document.body.classList.toggle('dark-theme', this.value === 'dark'); }); 
+				</script>
+				<nav>
+					<input type="checkbox" id="menu-toggle">
+					<label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+					<ul>
+						<li><a
+								href="https://www.figma.com/design/aZF8NsbH1P7ddeNDilJzos/Untitled?node-id=0-1&t=AhJPRjwUvO68EK8Y-1">Фигма</a>
+						</li>
+						<li><a href="https://kochevov.wordpress.com/kursovaaa/">Ворд Пресс</a></li>
+						<li><a href="https://onlinetestpad.com/4dvglwjhrtxwi">Тест</a></li>
+						<li><a href="https://b24-owf0e7.bitrix24site.ru/">Бетрикс24</a></li>
+					</ul>
+				</nav>
+			
+				<style>
+					nav ul {
+						list-style-type: none;
+						padding: 0;
+						display: none;
+					}
+			
+					nav input[type="checkbox"] {
+						display: none;
+					}
+			
+					nav label.hamburger {
+						display: inline-block;
+						cursor: pointer;
+					}
+			
+					nav label.hamburger span {
+						display: block;
+						width: 25px;
+						height: 3px;
+						background-color: #000;
+						margin: 5px 0;
+						transition: all 0.3s ease;
+					}
+			
+					nav input[type="checkbox"]:checked~ul {
+						display: block;
+					}
+			
+					nav input[type="checkbox"]:checked+label.hamburger span:nth-child(1) {
+						transform: rotate(45deg) translate(7px, 7px);
+					}
+			
+					nav input[type="checkbox"]:checked+label.hamburger span:nth-child(2) {
+						opacity: 0;
+					}
+			
+					nav input[type="checkbox"]:checked+label.hamburger span:nth-child(3) {
+						transform: rotate(-45deg) translate(6px, -6px);
+					}
+				</style>
+			
+				<font color="grey">
+					<h1 align="center"><b>Выберите свою страну</b></h1>
+				</font>
+				<div class="left">
+					<CAPTION>Выберите страну:</CAPTION>
+					<TR>
+						<TD VALIGN=’top’>
+							<!—Раскрывающийся список -->
+								<SELECT NAME=’country’ SIZE=’1’>
+			<OPTION VALUE=’Белоруссия’>Белоруссия
+			<OPTION VALUE=’Казахстан’>Казахстан
+			<OPTION VALUE=’Россия’>Россия
+			<OPTION VALUE=’Украина’>Украина
+			<OPTION VALUE=’Афганистан’>Афганистан
+			<OPTION VALUE=’Албания’>Албания
+			<OPTION VALUE=’Алжир’>Алжир
+			<OPTION VALUE=’Andorra’>Andorra
+			<OPTION VALUE=’Angola’>Angola
+			<OPTION VALUE=’Антигуа и Барбуда’>Антигуа и Барбуда
+			<OPTION VALUE=’Liechtenstein’>Liechtenstein
+			<OPTION VALUE=’Аргентина’>Аргентина
+			<OPTION VALUE=’Армения’>Армения
+			<OPTION VALUE=’Австралия’>Австралия
+			<OPTION VALUE=’Австрия’>Австрия
+			<OPTION VALUE=’Азербайджан’>Азербайджан	
+			<OPTION VALUE=’Багамские острова’>Багамские острова
+			<OPTION VALUE=’Бахрейн’>Бахрейн
+			<OPTION VALUE=’Бангладеш’>Бангладеш
+			<OPTION VALUE=’Barbados’>Barbados
+			<OPTION VALUE=’Бельгия’>Бельгия
+			<OPTION VALUE=’Белиз’>Белиз
+			<OPTION VALUE=’Бенин’>Бенин
+			<OPTION VALUE=’Бутан’>Бутан
+			<OPTION VALUE=’Боливия’>Боливия
+			<OPTION VALUE=’Босния и Герцеговина’>Босния и Герцеговина
+			<OPTION VALUE=’Ботсвана’>Ботсвана
+			<OPTION VALUE=’Бразилия’>Бразилия
+			<OPTION VALUE=’Бруней’>Бруней
+			<OPTION VALUE=’Болгария’>Болгария
+			<OPTION VALUE=’Буркина-Фасо’>Буркина-Фасо
+			<OPTION VALUE=’Бурунди’>Бурунди
+			<OPTION VALUE=’Cabo Verde’>Cabo Verde
+			<OPTION VALUE=’Камбоджа’>Камбоджа
+			<OPTION VALUE=’Камерун’>Камерун
+			<OPTION VALUE=’Канада’>Канада
+			<OPTION VALUE=’Центральноафриканская Республика’>Центральноафриканская Республика
+			<OPTION VALUE=’Чад’>Чад
+			<OPTION VALUE=’Чили’>Чили
+			<OPTION VALUE=’Китай’>Китай
+			<OPTION VALUE=’Colombia’>Colombia
+			<OPTION VALUE=’Коморские острова’>Коморские острова
+			<OPTION VALUE=’Конго, Демократическая Республика Конго’>Конго, Демократическая Республика Конго
+			<OPTION VALUE=’Конго, Республика Конго’>Конго, Республика Конго
+			<OPTION VALUE=’Коста-Рика’>Коста-Рика
+			<OPTION VALUE=’Коста-Рика’>Коста-Рика
+			<OPTION VALUE=’Хорватия’>Хорватия
+			<OPTION VALUE=’Куба’>Куба
+			<OPTION VALUE=’Кипр’>Кипр
+			<OPTION VALUE=’Чешская Республика’>Чешская Республика
+			<OPTION VALUE=’Дания’>Дания
+			<OPTION VALUE=’Джибути’>Джибути
+			<OPTION VALUE=’Доминика Республика’>Доминика Республика
+			<OPTION VALUE=’Эквадор’>Эквадор
+			<OPTION VALUE=’Египет’>Египет
+			<OPTION VALUE=’El Salvador’>El Salvador
+			<OPTION VALUE=’Экваториальная Гвинея’>Экваториальная Гвинея
+			<OPTION VALUE=’Эритрея’>Эритрея
+			<OPTION VALUE=’Эстония’>Эстония
+			<OPTION VALUE=’Эсватини’>Эсватини
+			<OPTION VALUE=’Эфиопия’>Эфиопия
+			<OPTION VALUE=’Фиджи’>Фиджи
+			<OPTION VALUE=’Финляндия’>Финляндия	
+			<OPTION VALUE=’Франция’>Франция
+			<OPTION VALUE=’Габон’>Габон
+			<OPTION VALUE=’Гамбия’>Гамбия
+			<OPTION VALUE=’Грузия’>Грузия
+			<OPTION VALUE=’Германия	’>Германия	
+			<OPTION VALUE=’Гана’>Гана	
+			<OPTION VALUE=’Греция’>Греция
+			<OPTION VALUE=’Гренада’>Гренада
+			<OPTION VALUE=’Гватемала’>Гватемала
+			<OPTION VALUE=’Гвинея’>Гвинея
+			<OPTION VALUE=’Гвинея-Бисау’>Гвинея-Бисау
+			<OPTION VALUE=’Гайана’>Гайана
+			<OPTION VALUE=’Гаити’>Гаити
+			<OPTION VALUE=’Honduras’>Honduras
+			<OPTION VALUE=’Венгрия’>Венгрия
+			<OPTION VALUE=’Исландия’>Исландия
+			<OPTION VALUE=’Индия’>Индия
+			<OPTION VALUE=’Индонезия’>Индонезия
+			<OPTION VALUE=’Иран’>Иран
+			<OPTION VALUE=’Ирак’>Ирак
+			<OPTION VALUE=’Ирландия’>Ирландия
+			<OPTION VALUE=’Израиль’>Израиль
+			<OPTION VALUE=’Италия’>Италия
+			<OPTION VALUE=’Ямайка’>Ямайка
+			<OPTION VALUE=’Япония’>Япония
+			<OPTION VALUE=’Иордания’>Иордания
+			<OPTION VALUE=’Кения’>Кения
+			<OPTION VALUE=’Kiribati’>Kiribati
+			<OPTION VALUE=’Корея, Северная’>Корея, Северная
+			<OPTION VALUE=’Корея, Южная Корея’>Корея, Южная Корея
+			<OPTION VALUE=’Косово’>Косово
+			<OPTION VALUE=’Кувейт’>Кувейт
+			<OPTION VALUE=’Кыргызстан’>Кыргызстан
+			<OPTION VALUE=’Лаос’>Лаос
+			<OPTION VALUE=’Латвия’>Латвия
+			<OPTION VALUE=’Ливан’>Ливан
+			<OPTION VALUE=’Лесото’>Лесото
+			<OPTION VALUE=’Либерия’>Либерия
+			<OPTION VALUE=’Ливия’>Ливия
+			<OPTION VALUE=’Литва’>Литва
+			<OPTION VALUE=’Luxembourg’>Luxembourg
+			<OPTION VALUE=’Мадагаскар’>Мадагаскар
+			<OPTION VALUE=’Малави’>Малави
+			<OPTION VALUE=’Малайзия’>Малайзия
+			<OPTION VALUE=’Мальдивы’>Мальдивы
+			<OPTION VALUE=’Мали’>Мали
+			<OPTION VALUE=’Мальта	’>Мальта	
+			<OPTION VALUE=’Маршалловы острова’>Маршалловы острова
+			<OPTION VALUE=’Мавритания’>Мавритания
+			<OPTION VALUE=’Mauritius’>Mauritius
+			<OPTION VALUE=’Мексика’>Мексика
+			<OPTION VALUE=’Микронезия’>Микронезия
+			<OPTION VALUE=’Moldova’>Moldova
+			<OPTION VALUE=’Монако’>Монако
+			<OPTION VALUE=’Монголия’>Монголия
+			<OPTION VALUE=’Черногория’>Черногория	
+			<OPTION VALUE=’Марокко’>Марокко
+			<OPTION VALUE=’Мозамбик’>Мозамбик
+			<OPTION VALUE=’Мьянма (бывшая Бирма)’>Мьянма (бывшая Бирма)
+			<OPTION VALUE=’Namibia’>Namibia
+			<OPTION VALUE=’Науру’>Науру
+			<OPTION VALUE=’Непал’>Непал
+			<OPTION VALUE=’Нидерланды’>Нидерланды
+			<OPTION VALUE=’Новая Зеландия’>Новая Зеландия
+			<OPTION VALUE=’Никарагуа’>Никарагуа
+			<OPTION VALUE=’Niger’>Niger
+			<OPTION VALUE=’Нигерия’>Нигерия
+			<OPTION VALUE=’Северная Македония’>Северная Македония
+			<OPTION VALUE=’Норвегия’>Норвегия
+			<OPTION VALUE=’Оман’>Оман
+			<OPTION VALUE=’Пакистан’>Пакистан
+			<OPTION VALUE=’Palau’>Palau
+			<OPTION VALUE=’Панама’>Панама
+			<OPTION VALUE=’Папуа-Новая Гвинея’>Папуа-Новая Гвинея	
+			<OPTION VALUE=’Paraguay’>Paraguay
+			<OPTION VALUE=’Перу’>Перу
+			<OPTION VALUE=’Филиппины’>Филиппины
+			<OPTION VALUE=’Польша’>Польша	
+			<OPTION VALUE=’Португалия’>Португалия
+			<OPTION VALUE=’Qatar’>Qatar
+			<OPTION VALUE=’Румыния’>Румыния
+			<OPTION VALUE=’Россия’>Россия
+			<OPTION VALUE=’Руанда’>Руанда
+			<OPTION VALUE=’Сент-Китс и Невис’>Сент-Китс и Невис
+			<OPTION VALUE=’Сент-Люсия’>Сент-Люсия
+			<OPTION VALUE=’Сент-Винсент и Гренадины’>Сент-Винсент и Гренадины
+			<OPTION VALUE=’Самоа’>Самоа
+			<OPTION VALUE=’Сан-Марино’>Сан-Марино
+			<OPTION VALUE=’Сан-Томе и Принсипи’>Сан-Томе и Принсипи
+			<OPTION VALUE=’Саудовская Аравия’>Саудовская Аравия
+			<OPTION VALUE=’Сенегал’>Сенегал
+			<OPTION VALUE=’Сербия’>Сербия
+			<OPTION VALUE=’Сейшельские острова’>Сейшельские острова
+			<OPTION VALUE=’Сьерра-Леоне’>Сьерра-Леоне
+			<OPTION VALUE=’Сингапур	’>Сингапур	
+			<OPTION VALUE=’Словакия’>Словакия
+			<OPTION VALUE=’Словения’>Словения
+			<OPTION VALUE=’Соломоновы острова’>Соломоновы острова	
+			<OPTION VALUE=’Сомали’>Сомали
+			<OPTION VALUE=’Южная Африка’>Южная Африка
+			<OPTION VALUE=’Южный Судан’>Южный Судан
+			<OPTION VALUE=’Испания’>Испания
+			<OPTION VALUE=’Шри-Ланка’>Шри-Ланка	
+			<OPTION VALUE=’Судан’>Судан
+			<OPTION VALUE=’Суринам’>Суринам
+			<OPTION VALUE=’Швеция’>Швеция
+			<OPTION VALUE=’Швейцария’>Швейцария
+			<OPTION VALUE=’Сирия’>Сирия
+			<OPTION VALUE=’Тайвань’>Тайвань
+			<OPTION VALUE=’Таджикистан’>Таджикистан
+			<OPTION VALUE=’Tanzania’>Tanzania
+			<OPTION VALUE=’Таиланд	’>Таиланд	
+			<OPTION VALUE=’Тимор-Лешти’>Тимор-Лешти
+			<OPTION VALUE=’Того’>Того
+			<OPTION VALUE=’Tonga’>Tonga
+			<OPTION VALUE=’Тринидад и Тобаго’>Тринидад и Тобаго
+			<OPTION VALUE=’Тунис’>Тунис
+			<OPTION VALUE=’Турция’>Турция
+			<OPTION VALUE=’Туркменистан’>Туркменистан
+			<OPTION VALUE=’Tuvalu’>Tuvalu
+			<OPTION VALUE=’Уганда’>Уганда
+			<OPTION VALUE=’Объединенные Арабские Эмираты’>Объединенные Арабские Эмираты
+			<OPTION VALUE=’Великобритания’>Великобритания
+			<OPTION VALUE=’США’>США
+			<OPTION VALUE=’Уругвай’>Уругвай
+			<OPTION VALUE=’Узбекистан’>Узбекистан
+			<OPTION VALUE=’Вануату’>Вануату
+			<OPTION VALUE=’Ватикан’>Ватикан
+			<OPTION VALUE=’Venezuela’>Venezuela
+			<OPTION VALUE=’Вьетнам’>Вьетнам
+			<OPTION VALUE=’Йемен’>Йемен
+			<OPTION VALUE=’Замбия’>Замбия
+			<OPTION VALUE=’Зимбабве’>Зимбабве
+			</SELECT>
+						</TD>
+						</FORM>
+				</div></p>
+		</div>
 
-<style> nav ul { list-style-type: none; padding: 0; display: none; } nav input[type="checkbox"] { display: none; } nav label.hamburger { display: inline-block; cursor: pointer; } nav label.hamburger span { display: block; width: 25px; height: 3px; background-color: #000; margin: 5px 0; transition: all 0.3s ease; } nav input[type="checkbox"]:checked ~ ul { display: block; } nav input[type="checkbox"]:checked + label.hamburger span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); } nav input[type="checkbox"]:checked + label.hamburger span:nth-child(2) { opacity: 0; } nav input[type="checkbox"]:checked + label.hamburger span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); } </style>
+		<div class="tab-content" id="tab2">
+			<h2>О мне</h2>
+			<p>Я Кочевов Кирилл Денисович 23.08.2010 года рождения уже на 2-ом курсе Web-Дизайна мне нравиться это направление и когда
+			выросту хочу пойти на дизайнера и Web-Дизайн мне в этом поможет.</p>
+		</div>
 
-          <font color="grey"><h1 align="center"><b>Выберите свою страну</b></h1></font>
-<div class="left"> 
-<CAPTION>Выберите страну:</CAPTION>
-<TR><TD VALIGN=’top’>
-<!—Раскрывающийся список -->
-<SELECT NAME=’country’ SIZE=’1’>
-<OPTION VALUE=’Белоруссия’>Белоруссия
-<OPTION VALUE=’Казахстан’>Казахстан
-<OPTION VALUE=’Россия’>Россия
-<OPTION VALUE=’Украина’>Украина
-<OPTION VALUE=’Афганистан’>Афганистан
-<OPTION VALUE=’Албания’>Албания
-<OPTION VALUE=’Алжир’>Алжир
-<OPTION VALUE=’Andorra’>Andorra
-<OPTION VALUE=’Angola’>Angola
-<OPTION VALUE=’Антигуа и Барбуда’>Антигуа и Барбуда
-<OPTION VALUE=’Liechtenstein’>Liechtenstein
-<OPTION VALUE=’Аргентина’>Аргентина
-<OPTION VALUE=’Армения’>Армения
-<OPTION VALUE=’Австралия’>Австралия
-<OPTION VALUE=’Австрия’>Австрия
-<OPTION VALUE=’Азербайджан’>Азербайджан	
-<OPTION VALUE=’Багамские острова’>Багамские острова
-<OPTION VALUE=’Бахрейн’>Бахрейн
-<OPTION VALUE=’Бангладеш’>Бангладеш
-<OPTION VALUE=’Barbados’>Barbados
-<OPTION VALUE=’Бельгия’>Бельгия
-<OPTION VALUE=’Белиз’>Белиз
-<OPTION VALUE=’Бенин’>Бенин
-<OPTION VALUE=’Бутан’>Бутан
-<OPTION VALUE=’Боливия’>Боливия
-<OPTION VALUE=’Босния и Герцеговина’>Босния и Герцеговина
-<OPTION VALUE=’Ботсвана’>Ботсвана
-<OPTION VALUE=’Бразилия’>Бразилия
-<OPTION VALUE=’Бруней’>Бруней
-<OPTION VALUE=’Болгария’>Болгария
-<OPTION VALUE=’Буркина-Фасо’>Буркина-Фасо
-<OPTION VALUE=’Бурунди’>Бурунди
-<OPTION VALUE=’Cabo Verde’>Cabo Verde
-<OPTION VALUE=’Камбоджа’>Камбоджа
-<OPTION VALUE=’Камерун’>Камерун
-<OPTION VALUE=’Канада’>Канада
-<OPTION VALUE=’Центральноафриканская Республика’>Центральноафриканская Республика
-<OPTION VALUE=’Чад’>Чад
-<OPTION VALUE=’Чили’>Чили
-<OPTION VALUE=’Китай’>Китай
-<OPTION VALUE=’Colombia’>Colombia
-<OPTION VALUE=’Коморские острова’>Коморские острова
-<OPTION VALUE=’Конго, Демократическая Республика Конго’>Конго, Демократическая Республика Конго
-<OPTION VALUE=’Конго, Республика Конго’>Конго, Республика Конго
-<OPTION VALUE=’Коста-Рика’>Коста-Рика
-<OPTION VALUE=’Коста-Рика’>Коста-Рика
-<OPTION VALUE=’Хорватия’>Хорватия
-<OPTION VALUE=’Куба’>Куба
-<OPTION VALUE=’Кипр’>Кипр
-<OPTION VALUE=’Чешская Республика’>Чешская Республика
-<OPTION VALUE=’Дания’>Дания
-<OPTION VALUE=’Джибути’>Джибути
-<OPTION VALUE=’Доминика Республика’>Доминика Республика
-<OPTION VALUE=’Эквадор’>Эквадор
-<OPTION VALUE=’Египет’>Египет
-<OPTION VALUE=’El Salvador’>El Salvador
-<OPTION VALUE=’Экваториальная Гвинея’>Экваториальная Гвинея
-<OPTION VALUE=’Эритрея’>Эритрея
-<OPTION VALUE=’Эстония’>Эстония
-<OPTION VALUE=’Эсватини’>Эсватини
-<OPTION VALUE=’Эфиопия’>Эфиопия
-<OPTION VALUE=’Фиджи’>Фиджи
-<OPTION VALUE=’Финляндия’>Финляндия	
-<OPTION VALUE=’Франция’>Франция
-<OPTION VALUE=’Габон’>Габон
-<OPTION VALUE=’Гамбия’>Гамбия
-<OPTION VALUE=’Грузия’>Грузия
-<OPTION VALUE=’Германия	’>Германия	
-<OPTION VALUE=’Гана’>Гана	
-<OPTION VALUE=’Греция’>Греция
-<OPTION VALUE=’Гренада’>Гренада
-<OPTION VALUE=’Гватемала’>Гватемала
-<OPTION VALUE=’Гвинея’>Гвинея
-<OPTION VALUE=’Гвинея-Бисау’>Гвинея-Бисау
-<OPTION VALUE=’Гайана’>Гайана
-<OPTION VALUE=’Гаити’>Гаити
-<OPTION VALUE=’Honduras’>Honduras
-<OPTION VALUE=’Венгрия’>Венгрия
-<OPTION VALUE=’Исландия’>Исландия
-<OPTION VALUE=’Индия’>Индия
-<OPTION VALUE=’Индонезия’>Индонезия
-<OPTION VALUE=’Иран’>Иран
-<OPTION VALUE=’Ирак’>Ирак
-<OPTION VALUE=’Ирландия’>Ирландия
-<OPTION VALUE=’Израиль’>Израиль
-<OPTION VALUE=’Италия’>Италия
-<OPTION VALUE=’Ямайка’>Ямайка
-<OPTION VALUE=’Япония’>Япония
-<OPTION VALUE=’Иордания’>Иордания
-<OPTION VALUE=’Кения’>Кения
-<OPTION VALUE=’Kiribati’>Kiribati
-<OPTION VALUE=’Корея, Северная’>Корея, Северная
-<OPTION VALUE=’Корея, Южная Корея’>Корея, Южная Корея
-<OPTION VALUE=’Косово’>Косово
-<OPTION VALUE=’Кувейт’>Кувейт
-<OPTION VALUE=’Кыргызстан’>Кыргызстан
-<OPTION VALUE=’Лаос’>Лаос
-<OPTION VALUE=’Латвия’>Латвия
-<OPTION VALUE=’Ливан’>Ливан
-<OPTION VALUE=’Лесото’>Лесото
-<OPTION VALUE=’Либерия’>Либерия
-<OPTION VALUE=’Ливия’>Ливия
-<OPTION VALUE=’Литва’>Литва
-<OPTION VALUE=’Luxembourg’>Luxembourg
-<OPTION VALUE=’Мадагаскар’>Мадагаскар
-<OPTION VALUE=’Малави’>Малави
-<OPTION VALUE=’Малайзия’>Малайзия
-<OPTION VALUE=’Мальдивы’>Мальдивы
-<OPTION VALUE=’Мали’>Мали
-<OPTION VALUE=’Мальта	’>Мальта	
-<OPTION VALUE=’Маршалловы острова’>Маршалловы острова
-<OPTION VALUE=’Мавритания’>Мавритания
-<OPTION VALUE=’Mauritius’>Mauritius
-<OPTION VALUE=’Мексика’>Мексика
-<OPTION VALUE=’Микронезия’>Микронезия
-<OPTION VALUE=’Moldova’>Moldova
-<OPTION VALUE=’Монако’>Монако
-<OPTION VALUE=’Монголия’>Монголия
-<OPTION VALUE=’Черногория’>Черногория	
-<OPTION VALUE=’Марокко’>Марокко
-<OPTION VALUE=’Мозамбик’>Мозамбик
-<OPTION VALUE=’Мьянма (бывшая Бирма)’>Мьянма (бывшая Бирма)
-<OPTION VALUE=’Namibia’>Namibia
-<OPTION VALUE=’Науру’>Науру
-<OPTION VALUE=’Непал’>Непал
-<OPTION VALUE=’Нидерланды’>Нидерланды
-<OPTION VALUE=’Новая Зеландия’>Новая Зеландия
-<OPTION VALUE=’Никарагуа’>Никарагуа
-<OPTION VALUE=’Niger’>Niger
-<OPTION VALUE=’Нигерия’>Нигерия
-<OPTION VALUE=’Северная Македония’>Северная Македония
-<OPTION VALUE=’Норвегия’>Норвегия
-<OPTION VALUE=’Оман’>Оман
-<OPTION VALUE=’Пакистан’>Пакистан
-<OPTION VALUE=’Palau’>Palau
-<OPTION VALUE=’Панама’>Панама
-<OPTION VALUE=’Папуа-Новая Гвинея’>Папуа-Новая Гвинея	
-<OPTION VALUE=’Paraguay’>Paraguay
-<OPTION VALUE=’Перу’>Перу
-<OPTION VALUE=’Филиппины’>Филиппины
-<OPTION VALUE=’Польша’>Польша	
-<OPTION VALUE=’Португалия’>Португалия
-<OPTION VALUE=’Qatar’>Qatar
-<OPTION VALUE=’Румыния’>Румыния
-<OPTION VALUE=’Россия’>Россия
-<OPTION VALUE=’Руанда’>Руанда
-<OPTION VALUE=’Сент-Китс и Невис’>Сент-Китс и Невис
-<OPTION VALUE=’Сент-Люсия’>Сент-Люсия
-<OPTION VALUE=’Сент-Винсент и Гренадины’>Сент-Винсент и Гренадины
-<OPTION VALUE=’Самоа’>Самоа
-<OPTION VALUE=’Сан-Марино’>Сан-Марино
-<OPTION VALUE=’Сан-Томе и Принсипи’>Сан-Томе и Принсипи
-<OPTION VALUE=’Саудовская Аравия’>Саудовская Аравия
-<OPTION VALUE=’Сенегал’>Сенегал
-<OPTION VALUE=’Сербия’>Сербия
-<OPTION VALUE=’Сейшельские острова’>Сейшельские острова
-<OPTION VALUE=’Сьерра-Леоне’>Сьерра-Леоне
-<OPTION VALUE=’Сингапур	’>Сингапур	
-<OPTION VALUE=’Словакия’>Словакия
-<OPTION VALUE=’Словения’>Словения
-<OPTION VALUE=’Соломоновы острова’>Соломоновы острова	
-<OPTION VALUE=’Сомали’>Сомали
-<OPTION VALUE=’Южная Африка’>Южная Африка
-<OPTION VALUE=’Южный Судан’>Южный Судан
-<OPTION VALUE=’Испания’>Испания
-<OPTION VALUE=’Шри-Ланка’>Шри-Ланка	
-<OPTION VALUE=’Судан’>Судан
-<OPTION VALUE=’Суринам’>Суринам
-<OPTION VALUE=’Швеция’>Швеция
-<OPTION VALUE=’Швейцария’>Швейцария
-<OPTION VALUE=’Сирия’>Сирия
-<OPTION VALUE=’Тайвань’>Тайвань
-<OPTION VALUE=’Таджикистан’>Таджикистан
-<OPTION VALUE=’Tanzania’>Tanzania
-<OPTION VALUE=’Таиланд	’>Таиланд	
-<OPTION VALUE=’Тимор-Лешти’>Тимор-Лешти
-<OPTION VALUE=’Того’>Того
-<OPTION VALUE=’Tonga’>Tonga
-<OPTION VALUE=’Тринидад и Тобаго’>Тринидад и Тобаго
-<OPTION VALUE=’Тунис’>Тунис
-<OPTION VALUE=’Турция’>Турция
-<OPTION VALUE=’Туркменистан’>Туркменистан
-<OPTION VALUE=’Tuvalu’>Tuvalu
-<OPTION VALUE=’Уганда’>Уганда
-<OPTION VALUE=’Объединенные Арабские Эмираты’>Объединенные Арабские Эмираты
-<OPTION VALUE=’Великобритания’>Великобритания
-<OPTION VALUE=’США’>США
-<OPTION VALUE=’Уругвай’>Уругвай
-<OPTION VALUE=’Узбекистан’>Узбекистан
-<OPTION VALUE=’Вануату’>Вануату
-<OPTION VALUE=’Ватикан’>Ватикан
-<OPTION VALUE=’Venezuela’>Venezuela
-<OPTION VALUE=’Вьетнам’>Вьетнам
-<OPTION VALUE=’Йемен’>Йемен
-<OPTION VALUE=’Замбия’>Замбия
-<OPTION VALUE=’Зимбабве’>Зимбабве
-</SELECT>
-</TD>
-</FORM>
-</div>
-          <div id="chatbot"></div>
+		<div class="tab-content" id="tab3">
+			<h2>Контакты</h2>
+			<p>По любым вопросам писать на email: <a href=>kkocevov@gmail.com</a>.</p>
+    	<p>По любым вопросам звонить по номеру: <a href=>+79149559996</a>.</p>
+			<p>По любым вопросам писать в телеграмм: <a href=>@Ded_Bunkere</a>.</p>
+		</div>
+	</div>
 
-<script> const chatbotContainer = document.getElementById('chatbot'); const createChatBot = () => { const botMessage = document.createElement('p'); botMessage.textContent = 'Привет! Чем могу помочь?'; chatbotContainer.appendChild(botMessage); const userInput = document.createElement('input'); userInput.type = 'text'; userInput.placeholder = 'Введите сообщение...'; chatbotContainer.appendChild(userInput); const sendButton = document.createElement('button'); sendButton.textContent = 'Отправить'; chatbotContainer.appendChild(sendButton); sendButton.addEventListener('click', () => { const userMessage = document.createElement('p'); userMessage.textContent = userInput.value; chatbotContainer.appendChild(userMessage); const response = document.createElement('p'); response.textContent = 'Спасибо за ваш запрос. Мы скоро свяжемся с вами.'; chatbotContainer.appendChild(response); userInput.value = ''; }); }; createChatBot(); </script>
+	<script>
+		// JavaScript для переключения вкладок
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-</body> 
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Убираем активный класс у всех кнопок и контента
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Добавляем активный класс к выбранной кнопке и соответствующему контенту
+            button.classList.add('active');
+            const tabId = button.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+	</script>
+
+</body>
+
 </html>
