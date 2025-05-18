@@ -137,14 +137,14 @@
 	<div class="tab-container">
 		<!-- Кнопки вкладок -->
 		<div class="tab-buttons">
-			<div class="tab-button active" data-tab="tab1">Курсовая</div>
+			<div class="tab-button active" data-tab="tab1">Дипломная</div>
 			<div class="tab-button" data-tab="tab2">О мне</div>
 			<div class="tab-button" data-tab="tab3">Контакты</div>
 		</div>
 
 		<!-- Контент вкладок -->
 		<div class="tab-content active" id="tab1">
-			<h2>Курсовая Работа К.Д.Кочевов</h2>
+			<h2>Дипломная Работа К.Д.Кочевов</h2>
 			<p><hr>
 			<h1><b><div id="clock" align="center"></div>
 			
@@ -439,6 +439,34 @@
 						</FORM>
 				</div></p>
 		</div>
+		<div id="typewriter" class="typewriter"></div>
+
+<script>
+  const text = "Этот текст печатается сам!";
+  let i = 0;
+  const speed = 100; // Скорость в ms
+  
+  function typeWriter() {
+    if (i < text.length) {
+      document.getElementById("typewriter").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+  typeWriter();
+</script>
+
+<style>
+  .typewriter {
+    font-family: monospace;
+    border-right: 3px solid #000; /* Мигающий курсор */
+    animation: blink 0.7s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: #000; }
+  }
+</style>
 
 		<div class="tab-content" id="tab2">
 			<h2>О мне</h2>
