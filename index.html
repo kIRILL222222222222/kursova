@@ -484,6 +484,164 @@
                 text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor, 0 0 40px currentColor;
             }
         }
+        
+        /* Новые детали */
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 3px;
+            width: 75%;
+            animation: progress-pulse 2s infinite;
+        }
+        
+        @keyframes progress-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            margin: 5px;
+            background: rgba(106, 17, 203, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            border: 1px solid var(--primary);
+        }
+        
+        .pulse-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: var(--accent2);
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(0.8); opacity: 1; }
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted var(--accent2);
+            cursor: help;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border: 1px solid var(--accent);
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .counter {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent2);
+            text-shadow: 0 0 5px rgba(0, 255, 204, 0.7);
+            margin: 10px 0;
+        }
+        
+        .floating-action {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(255, 62, 127, 0.5);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+            animation: bounce 2s infinite;
+        }
+        
+        .floating-action:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(255, 62, 127, 0.7);
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent2);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: translateX(150%);
+            transition: transform 0.5s;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .gradient-border {
+            padding: 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 15px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -497,10 +655,34 @@
         <div class="floating-element"></div>
     </div>
 
+    <!-- Плавающая кнопка действия -->
+    <div class="floating-action" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Уведомление -->
+    <div class="notification" id="notification">
+        Добро пожаловать на сайт дипломной работы!
+    </div>
+
     <div class="container">
         <header>
             <h1>Дипломная работа</h1>
             <p class="subtitle">К.Д. Кочевов - Веб-дизайн и разработка</p>
+            
+            <!-- Прогресс бар -->
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            
+            <!-- Бейджи технологий -->
+            <div>
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Web Design</span>
+                <span class="tech-badge">UI/UX</span>
+            </div>
         </header>
 
         <div class="tab-container">
@@ -514,6 +696,13 @@
             <!-- Контент вкладок -->
             <div class="tab-content active" id="tab1">
                 <h2>Дипломная Работа К.Д. Кочевова</h2>
+                
+                <!-- Счетчик посещений -->
+                <div class="counter">
+                    <span class="pulse-dot"></span>
+                    Посещений: <span id="visitCount">1</span>
+                </div>
+                
                 <hr>
                 
                 <div id="clock" align="center"></div>
@@ -526,50 +715,73 @@
                         <span></span>
                     </label>
                     <ul>
-                        <li><a href="https://www.figma.com/design/aZF8NsbH1P7ddeNDilJzos/Untitled?node-id=0-1&t=AhJPRjwUvO68EK8Y-1">Фигма</a></li>
-                        <li><a href="https://kochevov.wordpress.com/kursovaaa/">Ворд Пресс</a></li>
-                        <li><a href="https://onlinetestpad.com/4dvglwjhrtxwi">Тест</a></li>
-                        <li><a href="https://b24-s2y12k.bitrix24.ru/sites/?feature_promoter=limit_copilot">Бетрикс24</a></li>
-                        <li><a href="https://jsitor.com/">Онлайн редактор</a></li>
-                        <li><a href="https://stackblitz.com/">StakBlitz</a></li>
-                        <li><a href="https://ru.textstudio.com/logo/102/Html+Text+Generator">Генератор текста</a></li>
-                        <li><a href="https://kirill222222222222.github.io/kursss/">Игра</a></li>
-                        <li><a href="https://kirill222222222222.github.io/kvadrober/">Сайт о погоде</a></li>
-                        <li><a href="https://kirill222222222222.github.io/Weather1/">Поддержка шрифтов</a></li>
-                        <li><a href="https://kirill222222222222.github.io/-/">Разметки языков</a></li>
-                        <li><a href=https://chat.deepseek.com/>Дипсик</a></li>
+                        <li><a href="https://www.figma.com/design/aZF8NsbH1P7ddeNDilJzos/Untitled?node-id=0-1&t=AhJPRjwUvO68EK8Y-1">Фигма <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://kochevov.wordpress.com/kursovaaa/">Ворд Пресс <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://onlinetestpad.com/4dvglwjhrtxwi">Тест <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://b24-s2y12k.bitrix24.ru/sites/?feature_promoter=limit_copilot">Бетрикс24 <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://jsitor.com/">Онлайн редактор <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://stackblitz.com/">StakBlitz <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://ru.textstudio.com/logo/102/Html+Text+Generator">Генератор текста <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://kirill222222222222.github.io/kursss/">Игра <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://kirill222222222222.github.io/kvadrober/">Сайт о погоде <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://kirill222222222222.github.io/Weather1/">Поддержка шрифтов <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://kirill222222222222.github.io/-/">Разметки языков <i class="fas fa-external-link-alt"></i></a></li>
+                        <li><a href="https://chat.deepseek.com/">Дипсик <i class="fas fa-external-link-alt"></i></a></li>
                     </ul>
                 </nav>
 
-                <h2 style="color: var(--accent2);">Выберите свою страну</h2>
-                <div class="country-selector">
-                    <select name="country" size="1">
-                        <option value="Белоруссия">Белоруссия</option>
-                        <option value="Казахстан">Казахстан</option>
-                        <option value="Россия">Россия</option>
-                        <option value="Украина">Украина</option>
-                        <option value="Афганистан">Афганистан</option>
-                        <option value="Албания">Албания</option>
-                        <option value="Алжир">Алжир</option>
-                        <option value="Andorra">Andorra</option>
-                        <option value="Angola">Angola</option>
-                        <option value="Антигуа и Барбуда">Антигуа и Барбуда</option>
-                        <option value="Liechtenstein">Liechtenstein</option>
-                        <option value="Аргентина">Аргентина</option>
-                        <option value="Армения">Армения</option>
-                        <option value="Австралия">Австралия</option>
-                        <option value="Австрия">Австрия</option>
-                        <option value="Азербайджан">Азербайджан</option>
-                        <!-- Остальные страны остаются без изменений -->
-                        <option value="Замбия">Замбия</option>
-                        <option value="Зимбабве">Зимбабве</option>
-                    </select>
+                <div class="gradient-border">
+                    <h2 style="color: var(--accent2);">Выберите свою страну</h2>
+                    <div class="country-selector">
+                        <select name="country" size="1" id="countrySelect">
+                            <option value="Белоруссия">Белоруссия</option>
+                            <option value="Казахстан">Казахстан</option>
+                            <option value="Россия">Россия</option>
+                            <option value="Украина">Украина</option>
+                            <option value="Афганистан">Афганистан</option>
+                            <option value="Албания">Албания</option>
+                            <option value="Алжир">Алжир</option>
+                            <option value="Andorra">Andorra</option>
+                            <option value="Angola">Angola</option>
+                            <option value="Антигуа и Барбуда">Антигуа и Барбуда</option>
+                            <option value="Liechtenstein">Liechtenstein</option>
+                            <option value="Аргентина">Аргентина</option>
+                            <option value="Армения">Армения</option>
+                            <option value="Австралия">Австралия</option>
+                            <option value="Австрия">Австрия</option>
+                            <option value="Азербайджан">Азербайджан</option>
+                            <!-- Остальные страны остаются без изменений -->
+                            <option value="Замбия">Замбия</option>
+                            <option value="Зимбабве">Зимбабве</option>
+                        </select>
+                    </div>
+                    <p class="tooltip">Зачем выбирать страну?
+                        <span class="tooltiptext">Это демонстрационный элемент для показа возможностей веб-форм</span>
+                    </p>
                 </div>
             </div>
 
             <div class="tab-content" id="tab2">
                 <h2>Обо мне</h2>
                 <p>Я Кочевов Кирилл Денисович 23.08.2010 года рождения уже на 2-ом курсе Web-Дизайна мне нравиться это направление и когда вырасту хочу пойти на дизайнера и Web-Дизайн мне в этом поможет.</p>
+                
+                <div class="gradient-border">
+                    <h3>Мои навыки</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                    <p>HTML/CSS</p>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                    <p>JavaScript</p>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                    <p>Web Design</p>
+                </div>
                 
                 <div class="cube-container">
                     <div class="cube">
@@ -598,6 +810,11 @@
                         <i class="fab fa-telegram"></i>
                         <p>По любым вопросам писать в телеграмм: <a href="https://t.me/Ded_Bunkere" target="_blank">@Ded_Bunkere</a></p>
                     </div>
+                </div>
+                
+                <div class="gradient-border">
+                    <h3>Свяжитесь со мной</h3>
+                    <p>Я открыт для сотрудничества и новых проектов. Не стесняйтесь связаться со мной любым удобным способом!</p>
                 </div>
                 
                 <div class="cube-container">
@@ -643,9 +860,58 @@
                 document.getElementById(tabId).classList.add('active');
             });
         });
+
+        // Счетчик посещений
+        let visitCount = localStorage.getItem('visitCount') || 0;
+        visitCount = parseInt(visitCount) + 1;
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visitCount').textContent = visitCount;
+
+        // Показать уведомление
+        const notification = document.getElementById('notification');
+        setTimeout(() => {
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }, 1000);
+
+        // Кнопка прокрутки наверх
+        const scrollTopBtn = document.getElementById('scrollTop');
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Показать/скрыть кнопку прокрутки
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.style.display = 'flex';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+
+        // Обработка выбора страны
+        const countrySelect = document.getElementById('countrySelect');
+        countrySelect.addEventListener('change', function() {
+            const selectedCountry = this.options[this.selectedIndex].text;
+            notification.textContent = `Вы выбрали: ${selectedCountry}`;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        });
+
+        // Добавление иконок внешней ссылки ко всем ссылкам в навигации
+        document.querySelectorAll('nav a').forEach(link => {
+            if (link.hostname !== window.location.hostname) {
+                link.innerHTML += ' <i class="fas fa-external-link-alt"></i>';
+            }
+        });
     </script>
 </body>
 </html>
+
 
 
 
